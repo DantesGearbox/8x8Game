@@ -22,13 +22,5 @@ public class GameEvents : MonoBehaviour
 	//	}
 	//}
 
-	public event Action OnDodgeButtonPressed;
-	public void OnDodgeButtonPressedEvent()
-	{
-		Debug.Log("OnDodgeButtonPressedEvent sent");
-		if (OnDodgeButtonPressed != null)
-		{
-			OnDodgeButtonPressed.Invoke();
-		}
-	}
+	
 }

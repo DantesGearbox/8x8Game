@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	Rigidbody2D rb;
+	Animator anim;
 	float movespeed = 5;
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		anim = GetComponentInChildren<Animator>();
 	}
 
 	void Update()
@@ -22,7 +24,8 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			GameEvents.instance.OnDodgeButtonPressedEvent();
+			//dodgeRoll.StopTimer(); //To reset it
+			//dodgeRoll.StartTimer(); //To start it up
 		}
 	}
 }
