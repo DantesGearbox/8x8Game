@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	Rigidbody2D rb;
-	Animator anim;
-	float movespeed = 5;
+	private Rigidbody2D rb;
+	private Animator anim;
+
+	[Header("Exposed Values")]
+	public FloatWrapper movespeed;
+	public BoolWrapper takesInput;
+	public BoolWrapper dodgerollDisable;
+	public Vector3Wrapper lastNonzeroVelocity;
+
+	[Header("Sequences")]
+	public Sequence dodgeRoll;
 
 	void Start()
 	{
@@ -16,16 +24,31 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+		//Save the last non-zero velocity that isn't higher than movespeed
+		if (rb.velocity.magnitude > 0)
+		{
+			lastNonzeroVelocity.vectorValue = rb.velocity;
+			lastNonzeroVelocity.vectorValue = Vector2.ClampMagnitude(lastNonzeroVelocity.vectorValue, movespeed.floatValue);
+		}
+
+		//Return if we are not taking input currently
+		if (!takesInput.boolValue)
+		{
+			return;
+		}
+
+		//Find movement for current frame
 		float xInput = Input.GetAxisRaw("Horizontal");
 		float yInput = Input.GetAxisRaw("Vertical");
 
 		Vector2 direction = new Vector2(xInput, yInput).normalized;
-		rb.velocity = direction * movespeed;
 
-		if (Input.GetKeyDown(KeyCode.Space))
+		rb.velocity = direction * movespeed.floatValue;
+
+		if (Input.GetKeyDown(KeyCode.Space) && !dodgerollDisable.boolValue)
 		{
-			//dodgeRoll.StopTimer(); //To reset it
-			//dodgeRoll.StartTimer(); //To start it up
+			dodgeRoll.StopTimer(); //To reset it
+			dodgeRoll.StartTimer(); //To start it up
 		}
 	}
 }

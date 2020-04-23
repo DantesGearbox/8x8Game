@@ -5,8 +5,9 @@ using UnityEngine;
 public class RB2DRelativeTweener : Tween
 {
 	public Rigidbody2D rigidbody2DReference;
+	public Vector3Wrapper vector3Reference;
 
-	public bool useCurrentVelocityAsDirection = false;
+	public bool useVectorRefAsDirection = false;
 
 	public float speed;
 	public Vector2 direction;
@@ -37,10 +38,11 @@ public class RB2DRelativeTweener : Tween
 	{
 		isTweening = true;
 
+		//Use the supplied vector as the movement direction
 		Vector2 moveDirection;
-		if (useCurrentVelocityAsDirection)
+		if (useVectorRefAsDirection)
 		{
-			moveDirection = rigidbody2DReference.velocity.normalized;
+			moveDirection = vector3Reference.vectorValue.normalized;
 		}
 		else
 		{
@@ -48,13 +50,13 @@ public class RB2DRelativeTweener : Tween
 		}
 
 		movementVector = moveDirection * speed;
-		rigidbody2DReference.velocity += movementVector;
+		rigidbody2DReference.velocity = movementVector;
 	}
 
 	public override void StopTween()
 	{
 		isTweening = false;
 		tweenTimer = 0;
-		rigidbody2DReference.velocity -= movementVector;
+		rigidbody2DReference.velocity = Vector2.zero;
 	}
 }
