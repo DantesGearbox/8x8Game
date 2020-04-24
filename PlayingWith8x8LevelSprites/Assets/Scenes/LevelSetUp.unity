@@ -2226,7 +2226,7 @@ MonoBehaviour:
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 0, g: 0, b: 0, a: 1}
   loop: 1
-  loopDuration: 0.05
+  loopDuration: 0.1
   pingpong: 0
   pingpongDuration: 0
   instantTween: 0

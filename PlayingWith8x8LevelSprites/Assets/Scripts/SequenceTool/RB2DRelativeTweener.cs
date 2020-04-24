@@ -40,17 +40,13 @@ public class RB2DRelativeTweener : Tween
 		isTweening = true;
 
 		//Use the supplied vector as the movement direction
-		Vector2 moveDirection;
+		Vector2 moveDirection = direction.normalized;
 		if (useVectorRefAsDirection)
 		{
 			moveDirection = vector3Reference.vectorValue.normalized;
 		}
 		if (useReverseVector){
 			moveDirection = (vector3Reference.vectorValue * -1.0f).normalized;
-		}
-		else
-		{
-			moveDirection = direction.normalized;
 		}
 
 		movementVector = moveDirection * speed;
