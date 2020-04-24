@@ -7,6 +7,8 @@ public class PlayerAnimationHelper : MonoBehaviour
 	Rigidbody2D rb;
 	Animator anim;
 	SpriteRenderer sr;
+
+	public BoolWrapper disable;
 	
     void Start()
     {
@@ -25,6 +27,11 @@ public class PlayerAnimationHelper : MonoBehaviour
 		else
 		{
 			anim.SetBool("IsRunning", false);
+		}
+
+		if (disable.boolValue)
+		{
+			return;
 		}
 
 		//Turn the sprite around

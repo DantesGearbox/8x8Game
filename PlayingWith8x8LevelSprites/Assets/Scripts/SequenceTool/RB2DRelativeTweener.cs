@@ -13,7 +13,7 @@ public class RB2DRelativeTweener : Tween
 	public float speed;
 	public Vector2 direction;
 
-	public Vector2 movementVector;
+	private Vector2 movementVector;
 
 	private bool isTweening = false;
 
