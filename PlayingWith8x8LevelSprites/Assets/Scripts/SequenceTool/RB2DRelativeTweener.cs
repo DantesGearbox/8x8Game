@@ -8,11 +8,12 @@ public class RB2DRelativeTweener : Tween
 	public Vector3Wrapper vector3Reference;
 
 	public bool useVectorRefAsDirection = false;
+	public bool useReverseVector = false;
 
 	public float speed;
 	public Vector2 direction;
 
-	private Vector2 movementVector;
+	public Vector2 movementVector;
 
 	private bool isTweening = false;
 
@@ -43,6 +44,9 @@ public class RB2DRelativeTweener : Tween
 		if (useVectorRefAsDirection)
 		{
 			moveDirection = vector3Reference.vectorValue.normalized;
+		}
+		if (useReverseVector){
+			moveDirection = (vector3Reference.vectorValue * -1.0f).normalized;
 		}
 		else
 		{
