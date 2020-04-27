@@ -934,6 +934,7 @@ MonoBehaviour:
   dodgerollDisable: {fileID: 563460913}
   lastNonzeroVelocity: {fileID: 169151629}
   dodgeRoll: {fileID: 1384232460}
+  shoot: {fileID: 1416347052}
 --- !u!1 &460614741
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,6 +2242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 716337364}
+  - component: {fileID: 716337365}
   m_Layer: 0
   m_Name: SpawnBullet
   m_TagString: Untagged
@@ -2262,6 +2264,24 @@ Transform:
   m_Father: {fileID: 1416347051}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &716337365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716337363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35e3d96754f0e0458c5da20d83f6b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasTweened: 0
+  startingTime: 0
+  tweenDuration: 0
+  bullet: {fileID: 2857670141940020580, guid: 287f22a9cd7de4a4ebbca91b15ee14f9, type: 3}
+  vector3Reference: {fileID: 169151629}
+  spawnOffset: {x: 0.5, y: -0.15, z: 0}
 --- !u!1 &766747123
 GameObject:
   m_ObjectHideFlags: 0
@@ -8970,7 +8990,7 @@ GameObject:
   - component: {fileID: 1615887465}
   m_Layer: 8
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

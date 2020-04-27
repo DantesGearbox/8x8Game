@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Sequences")]
 	public Sequence dodgeRoll;
+	public Sequence shoot;
 
 	void Start()
 	{
@@ -49,6 +50,12 @@ public class PlayerController : MonoBehaviour
 		{
 			dodgeRoll.StopTimer(); //To reset it
 			dodgeRoll.StartTimer(); //To start it up
+		}
+
+		if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			shoot.StopTimer(); //To reset it
+			shoot.StartTimer(); //To start it up
 		}
 	}
 }
