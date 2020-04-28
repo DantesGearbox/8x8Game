@@ -46,13 +46,13 @@ public class PlayerController : MonoBehaviour
 
 		rb.velocity = direction * movespeed.floatValue;
 
-		if (Input.GetKeyDown(KeyCode.Space) && !dodgerollDisable.boolValue)
+		if (Input.GetKeyDown(KeyCode.LeftShift) && !dodgerollDisable.boolValue)
 		{
 			dodgeRoll.StopTimer(); //To reset it
 			dodgeRoll.StartTimer(); //To start it up
 		}
 
-		if (Input.GetKeyDown(KeyCode.LeftShift))
+		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			shoot.StopTimer(); //To reset it
 			shoot.StartTimer(); //To start it up

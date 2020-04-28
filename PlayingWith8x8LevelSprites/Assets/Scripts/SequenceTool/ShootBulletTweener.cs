@@ -10,9 +10,12 @@ public class ShootBulletTweener : Tween
 
 	public override void StartTween()
 	{
-		//Vector3 rot = new Vector3(vector3Reference.vectorValue.x, 0, vector3Reference.vectorValue.y);
-		//Instantiate(bullet, transform.position + spawnOffset, Quaternion.LookRotation(rot));
-		Instantiate(bullet, transform.position + spawnOffset, Quaternion.identity);
+		Vector3 dir = vector3Reference.vectorValue;
+		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
+		Vector3 addedOffsetRot = rot.eulerAngles + new Vector3(0, 0, -90);
+
+		GameObject obj = Instantiate(bullet, transform.position + spawnOffset, Quaternion.Euler(addedOffsetRot));
 	}
 
 	public override void StopTween()
