@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Remember to replace the comments below with code that works for the tweeeeeeeens
-
 public class Sequence : MonoBehaviour
 {
 	public Tween[] tweens;
