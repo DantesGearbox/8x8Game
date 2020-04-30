@@ -3873,7 +3873,7 @@ GameObject:
   - component: {fileID: 1306091955}
   - component: {fileID: 1306091956}
   m_Layer: 0
-  m_Name: SlowMovespeed
+  m_Name: StopMovespeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
