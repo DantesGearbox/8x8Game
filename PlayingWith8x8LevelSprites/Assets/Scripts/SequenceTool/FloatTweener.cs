@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FloatTweener : Tween
+public class FloatTweener : SequenceAction
 {
 	public FloatWrapper referencedFloat;
 	

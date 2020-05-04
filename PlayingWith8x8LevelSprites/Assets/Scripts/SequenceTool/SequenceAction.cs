@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Tween : MonoBehaviour
+public abstract class SequenceAction : MonoBehaviour
 {
 	[HideInInspector] public bool hasTweened = false;
 

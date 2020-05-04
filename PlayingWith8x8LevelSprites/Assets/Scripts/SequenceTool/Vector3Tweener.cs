@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vector3Tweener : Tween
+public class Vector3Tweener : SequenceAction
 {
 	public Vector3Wrapper vectorReference;
 

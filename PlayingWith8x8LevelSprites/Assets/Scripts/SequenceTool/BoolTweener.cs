@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoolTweener : Tween
+public class BoolTweener : SequenceAction
 {
 	public BoolWrapper refencedBool;
 	public bool setReferencedBoolTo = false;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ColorTweener : Tween
+public class ColorTweener : SequenceAction
 {
 	public SpriteRenderer spriteRendererToTween;
 

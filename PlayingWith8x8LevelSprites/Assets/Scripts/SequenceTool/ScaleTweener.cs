@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScaleTweener : Tween
+public class ScaleTweener : SequenceAction
 {
 	public Transform transformReference;
 

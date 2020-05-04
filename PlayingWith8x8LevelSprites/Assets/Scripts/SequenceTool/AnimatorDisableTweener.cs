@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorDisableTweener : Tween
+public class AnimatorDisableTweener : SequenceAction
 {
 	public Animator AnimatorReference;
 

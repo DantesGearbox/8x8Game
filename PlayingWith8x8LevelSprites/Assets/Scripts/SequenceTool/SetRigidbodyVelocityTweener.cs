@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetRigidbodyVelocityTweener : Tween
+public class SetRigidbodyVelocityTweener : SequenceAction
 {
 	public Rigidbody2D rb;
 	public Vector2 newVelocity;

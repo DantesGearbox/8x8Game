@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ColorPingPongTweener : Tween
+public class ColorPingPongTweener : SequenceAction
 {
 	public SpriteRenderer spriteRendererToTween;
 

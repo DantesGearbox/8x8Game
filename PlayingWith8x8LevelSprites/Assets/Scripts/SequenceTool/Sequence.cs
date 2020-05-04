@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Sequence : MonoBehaviour
 {
-	public Tween[] tweens;
+	public SequenceAction[] tweens;
 
 	private float timer = 0;
 	private bool timerIsRunning = false;
 
 	private void Start()
 	{
-		tweens = GetComponentsInChildren<Tween>();
+		tweens = GetComponentsInChildren<SequenceAction>();
 	}
 
 	private void Update()
@@ -21,7 +21,7 @@ public class Sequence : MonoBehaviour
 			timer += Time.deltaTime;
 		}
 
-		foreach (Tween tween in tweens)
+		foreach (SequenceAction tween in tweens)
 		{
 			if (timer > tween.startingTime && !tween.hasTweened)
 			{
@@ -56,7 +56,7 @@ public class Sequence : MonoBehaviour
 
 	private void ResetTweens()
 	{
-		foreach(Tween tween in tweens)
+		foreach(SequenceAction tween in tweens)
 		{
 			tween.hasTweened = false;
 		}

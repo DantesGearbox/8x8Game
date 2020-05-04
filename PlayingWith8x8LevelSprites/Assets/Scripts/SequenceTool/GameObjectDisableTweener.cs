@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectDisableTweener : Tween
+public class GameObjectDisableTweener : SequenceAction
 {
 	public GameObject GameObjectReference;
 

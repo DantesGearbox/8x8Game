@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootBulletTweener : Tween
+public class ShootBulletTweener : SequenceAction
 {
 	public GameObject bullet;
 	public Vector3Wrapper vector3Reference;

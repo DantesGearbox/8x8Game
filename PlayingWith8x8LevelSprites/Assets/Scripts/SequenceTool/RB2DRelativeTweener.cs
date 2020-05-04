@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RB2DRelativeTweener : Tween
+public class RB2DRelativeTweener : SequenceAction
 {
 	public Rigidbody2D rigidbody2DReference;
 	public Vector3Wrapper vector3Reference;

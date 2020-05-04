@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionAbsoluteTweener : Tween
+public class PositionAbsoluteTweener : SequenceAction
 {
 	public Transform transformReference;
 

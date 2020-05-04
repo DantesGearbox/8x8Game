@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColliderDisableTweener : Tween
+public class ColliderDisableTweener : SequenceAction
 {
 	public Collider2D ColliderReference;
 

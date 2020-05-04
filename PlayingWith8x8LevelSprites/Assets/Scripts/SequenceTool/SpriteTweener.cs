@@ -5,7 +5,7 @@ using UnityEngine;
 //Actually just changes the sprite immediately, doesn't do anything.
 //Doesn't enforce that the chosen sprite is always selected, other code can change that.
 
-public class SpriteTweener : Tween
+public class SpriteTweener : SequenceAction
 {
 	public SpriteRenderer spriteRendererReference;
 	public Sprite spriteToChangeTo;
