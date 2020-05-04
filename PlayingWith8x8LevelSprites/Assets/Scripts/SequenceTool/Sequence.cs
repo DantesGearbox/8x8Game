@@ -2,63 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sequence : MonoBehaviour
+namespace SequenceTool
 {
-	public SequenceAction[] tweens;
-
-	private float timer = 0;
-	private bool timerIsRunning = false;
-
-	private void Start()
+	public class Sequence : MonoBehaviour
 	{
-		tweens = GetComponentsInChildren<SequenceAction>();
-	}
+		public Action[] tweens;
 
-	private void Update()
-	{
-		if (timerIsRunning)
+		private float timer = 0;
+		private bool timerIsRunning = false;
+
+		private void Start()
 		{
-			timer += Time.deltaTime;
+			tweens = GetComponentsInChildren<Action>();
 		}
 
-		foreach (SequenceAction tween in tweens)
+		private void Update()
 		{
-			if (timer > tween.startingTime && !tween.hasTweened)
+			if (timerIsRunning)
 			{
-				tween.hasTweened = true;
-				tween.StartTween();
+				timer += Time.deltaTime;
+			}
+
+			foreach (Action tween in tweens)
+			{
+				if (timer > tween.startingTime && !tween.hasExecuted)
+				{
+					tween.hasExecuted = true;
+					tween.StartAction();
+				}
 			}
 		}
-	}
 
-	public bool IsTimerRunning()
-	{
-		return timerIsRunning;
-	}
-
-	public void StartTimer()
-	{
-		timerIsRunning = true;
-	}
-
-	public void StopTimer()
-	{
-		timerIsRunning = false;
-		timer = 0;
-		ResetTweens();
-
-	}
-
-	public void PauseTimer()
-	{
-		timerIsRunning = false;
-	}
-
-	private void ResetTweens()
-	{
-		foreach(SequenceAction tween in tweens)
+		public bool IsTimerRunning()
 		{
-			tween.hasTweened = false;
+			return timerIsRunning;
+		}
+
+		public void StartTimer()
+		{
+			timerIsRunning = true;
+		}
+
+		public void StopTimer()
+		{
+			timerIsRunning = false;
+			timer = 0;
+			ResetTweens();
+
+		}
+
+		public void PauseTimer()
+		{
+			timerIsRunning = false;
+		}
+
+		private void ResetTweens()
+		{
+			foreach (Action tween in tweens)
+			{
+				tween.hasExecuted = false;
+			}
 		}
 	}
 }
