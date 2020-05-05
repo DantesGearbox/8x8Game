@@ -4,16 +4,30 @@ using UnityEngine;
 
 namespace SequenceTool
 {
-	public class SwitchAction : Action
+	public abstract class SwitchAction : Action
 	{
-		public override void StartAction()
+		//StartValue
+		//EndValue
+		//Duration
+		//Timer
+		//UpdateTimer function
+		//Loop (But probably in seperate classes for now)
+
+
+		public float actionDuration = 0;
+		protected float actionTimer = 0;
+
+		protected void UpdateTimer()
 		{
-			throw new System.NotImplementedException();
+			actionTimer += Time.deltaTime;
+
+			if (actionTimer > actionDuration)
+			{
+				StopAction();
+				SetToEndValue();
+			}
 		}
 
-		public override void StopAction()
-		{
-			throw new System.NotImplementedException();
-		}
+		protected abstract void SetToEndValue();
 	}
 }

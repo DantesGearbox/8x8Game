@@ -4,16 +4,11 @@ using UnityEngine;
 
 namespace SequenceTool
 {
-	public class InstantAction : Action
+	public abstract class InstantAction : Action
 	{
-		public override void StartAction()
-		{
-			throw new System.NotImplementedException();
-		}
+		//SetToValue
 
-		public override void StopAction()
-		{
-			throw new System.NotImplementedException();
-		}
+		public bool restoreStartValueAfterExecution = false;
+		protected abstract void RestoreStartValueAfterExecution();
 	}
 }
