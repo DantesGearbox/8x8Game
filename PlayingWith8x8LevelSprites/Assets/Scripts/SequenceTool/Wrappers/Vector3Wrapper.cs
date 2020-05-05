@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vector3Wrapper : MonoBehaviour
+namespace SequenceTool
 {
-	public Vector3 vectorValue;
+	public class Vector3Wrapper : MonoBehaviour
+	{
+		public Vector3 vectorValue;
+	}
 }

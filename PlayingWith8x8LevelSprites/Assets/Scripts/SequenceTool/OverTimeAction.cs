@@ -6,8 +6,8 @@ namespace SequenceTool
 {
 	public abstract class OverTimeAction : Action
 	{
-		//StartValue
-		//EndValue
+		//Start value
+		//End value
 		//Tween type
 		//Duration
 		//Timer
@@ -16,11 +16,13 @@ namespace SequenceTool
 		//Return to start value after execution function
 		//Loop + Pingpong (But probably in seperate classes for now)
 
-
+		public bool restoreAfterExecution = false;
 		public float actionDuration = 0;
-		public bool restoreStartValueAfterExecution = false;
-
 		protected float actionTimer = 0;
+		protected abstract void RestoreStartValueAfterExecution();
+
+
+		// --- Functions that might be overriden by subclasses ---
 
 		protected void UpdateTimer()
 		{
@@ -28,10 +30,19 @@ namespace SequenceTool
 
 			if (actionTimer > actionDuration)
 			{
-				StopAction();
+				EndAction();
 			}
 		}
 
-		protected abstract void RestoreStartValueAfterExecution();
+		public override void StartAction()
+		{
+			isExecuting = true;
+		}
+
+		public override void EndAction()
+		{
+			isExecuting = false;
+			actionTimer = 0;
+		}
 	}
 }

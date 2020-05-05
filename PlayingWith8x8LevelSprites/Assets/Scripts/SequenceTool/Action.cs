@@ -12,6 +12,6 @@ namespace SequenceTool
 		public float startingTime = 0;
 
 		public abstract void StartAction();
-		public abstract void StopAction();
+		public abstract void EndAction();
 	}
 }

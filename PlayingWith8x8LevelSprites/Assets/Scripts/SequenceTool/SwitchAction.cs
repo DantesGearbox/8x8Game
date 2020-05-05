@@ -13,9 +13,12 @@ namespace SequenceTool
 		//UpdateTimer function
 		//Loop (But probably in seperate classes for now)
 
-
 		public float actionDuration = 0;
 		protected float actionTimer = 0;
+		protected abstract void SetToEndValue();
+
+
+		// --- Functions that might be overriden by subclasses ---
 
 		protected void UpdateTimer()
 		{
@@ -23,11 +26,20 @@ namespace SequenceTool
 
 			if (actionTimer > actionDuration)
 			{
-				StopAction();
+				EndAction();
 				SetToEndValue();
 			}
 		}
 
-		protected abstract void SetToEndValue();
+		public override void StartAction()
+		{
+			isExecuting = true;
+		}
+
+		public override void EndAction()
+		{
+			isExecuting = false;
+			actionTimer = 0;
+		}
 	}
 }
