@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SequenceTool;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Sequences")]
 	public Sequence dodgeRoll;
-	public Sequence shoot;
+	//public Sequence shoot;
 
 	void Start()
 	{
@@ -54,8 +55,8 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			shoot.StopTimer(); //To reset it
-			shoot.StartTimer(); //To start it up
+			//shoot.StopTimer(); //To reset it
+			//shoot.StartTimer(); //To start it up
 		}
 	}
 }

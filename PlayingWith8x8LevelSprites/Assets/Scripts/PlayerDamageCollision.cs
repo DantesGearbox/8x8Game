@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SequenceTool;
 
 public class PlayerDamageCollision : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerDamageCollision : MonoBehaviour
 		{
 			getHurt.StopTimer();
 			getHurt.StartTimer();
+
 		}
 	}
 }

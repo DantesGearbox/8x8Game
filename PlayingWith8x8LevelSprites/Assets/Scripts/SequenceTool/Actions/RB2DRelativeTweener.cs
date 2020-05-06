@@ -2,61 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RB2DRelativeTweener : SequenceAction
+namespace SequenceTool
 {
-	public Rigidbody2D rigidbody2DReference;
-	public Vector3Wrapper vector3Reference;
 
-	public bool useVectorRefAsDirection = false;
-	public bool useReverseVector = false;
+}
 
-	public float speed;
-	public Vector2 direction;
+public class RB2DRelativeTweener
+{
+	//public Rigidbody2D rigidbody2DReference;
+	//public Vector3Wrapper vector3Reference;
 
-	private Vector2 movementVector;
+	//public bool useVectorRefAsDirection = false;
+	//public bool useReverseVector = false;
 
-	private bool isTweening = false;
+	//public float speed;
+	//public Vector2 direction;
 
-	private void Update()
-	{
-		if (isTweening)
-		{
-			UpdateTimer();
-		}
-	}
+	//private Vector2 movementVector;
 
-	private void UpdateTimer()
-	{
-		tweenTimer += Time.deltaTime;
+	//private bool isTweening = false;
 
-		if (tweenTimer > tweenDuration)
-		{
-			StopTween();
-		}
-	}
+	//private void Update()
+	//{
+	//	if (isTweening)
+	//	{
+	//		UpdateTimer();
+	//	}
+	//}
 
-	public override void StartTween()
-	{
-		isTweening = true;
+	//private void UpdateTimer()
+	//{
+	//	tweenTimer += Time.deltaTime;
 
-		//Use the supplied vector as the movement direction
-		Vector2 moveDirection = direction.normalized;
-		if (useVectorRefAsDirection)
-		{
-			moveDirection = vector3Reference.vectorValue.normalized;
-		}
-		if (useReverseVector){
-			moveDirection = (vector3Reference.vectorValue * -1.0f).normalized;
-		}
+	//	if (tweenTimer > tweenDuration)
+	//	{
+	//		StopTween();
+	//	}
+	//}
 
-		movementVector = moveDirection * speed;
-		rigidbody2DReference.velocity = movementVector;
-	}
+	//public override void StartTween()
+	//{
+	//	isTweening = true;
 
-	public override void StopTween()
-	{
-		isTweening = false;
-		tweenTimer = 0;
-		rigidbody2DReference.velocity = Vector2.zero;
-	}
+	//	//Use the supplied vector as the movement direction
+	//	Vector2 moveDirection = direction.normalized;
+	//	if (useVectorRefAsDirection)
+	//	{
+	//		moveDirection = vector3Reference.vectorValue.normalized;
+	//	}
+	//	if (useReverseVector){
+	//		moveDirection = (vector3Reference.vectorValue * -1.0f).normalized;
+	//	}
+
+	//	movementVector = moveDirection * speed;
+	//	rigidbody2DReference.velocity = movementVector;
+	//}
+
+	//public override void StopTween()
+	//{
+	//	isTweening = false;
+	//	tweenTimer = 0;
+	//	rigidbody2DReference.velocity = Vector2.zero;
+	//}
 }

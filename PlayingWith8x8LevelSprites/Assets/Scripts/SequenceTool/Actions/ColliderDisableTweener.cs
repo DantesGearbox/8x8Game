@@ -2,34 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColliderDisableTweener : SequenceAction
+namespace SequenceTool
 {
-	public Collider2D ColliderReference;
 
-	private bool isTweening = false;
+}
 
-	private void Update()
-	{
-		if (isTweening)
-		{
-			tweenTimer += Time.deltaTime;
-			if(tweenTimer > tweenDuration)
-			{
-				ColliderReference.enabled = true;
-				StopTween();
-			}
-		}
-	}
+public class ColliderDisableTweener
+{
+	//public Collider2D ColliderReference;
 
-	public override void StartTween()
-	{
-		isTweening = true;
-		ColliderReference.enabled = false;
-	}
+	//private bool isTweening = false;
 
-	public override void StopTween()
-	{
-		isTweening = false;
-		tweenTimer = 0;
-	}
+	//private void Update()
+	//{
+	//	if (isTweening)
+	//	{
+	//		tweenTimer += Time.deltaTime;
+	//		if(tweenTimer > tweenDuration)
+	//		{
+	//			ColliderReference.enabled = true;
+	//			StopTween();
+	//		}
+	//	}
+	//}
+
+	//public override void StartTween()
+	//{
+	//	isTweening = true;
+	//	ColliderReference.enabled = false;
+	//}
+
+	//public override void StopTween()
+	//{
+	//	isTweening = false;
+	//	tweenTimer = 0;
+	//}
 }

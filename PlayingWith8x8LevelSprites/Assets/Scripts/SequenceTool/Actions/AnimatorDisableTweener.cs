@@ -2,34 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorDisableTweener : SequenceAction
+namespace SequenceTool
 {
-	public Animator AnimatorReference;
 
-	private bool isTweening = false;
+}
+public class AnimatorDisableTweener
+{
+	//public Animator AnimatorReference;
 
-	private void Update()
-	{
-		if (isTweening)
-		{
-			tweenTimer += Time.deltaTime;
-			if(tweenTimer > tweenDuration)
-			{
-				AnimatorReference.enabled = true;
-				StopTween();
-			}
-		}
-	}
+	//private bool isTweening = false;
 
-	public override void StartTween()
-	{
-		isTweening = true;
-		AnimatorReference.enabled = false;
-	}
+	//private void Update()
+	//{
+	//	if (isTweening)
+	//	{
+	//		tweenTimer += Time.deltaTime;
+	//		if(tweenTimer > tweenDuration)
+	//		{
+	//			AnimatorReference.enabled = true;
+	//			StopTween();
+	//		}
+	//	}
+	//}
 
-	public override void StopTween()
-	{
-		isTweening = false;
-		tweenTimer = 0;
-	}
+	//public override void StartTween()
+	//{
+	//	isTweening = true;
+	//	AnimatorReference.enabled = false;
+	//}
+
+	//public override void StopTween()
+	//{
+	//	isTweening = false;
+	//	tweenTimer = 0;
+	//}
 }

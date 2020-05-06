@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectDestroyTweener : SequenceAction
+namespace SequenceTool
 {
-	public GameObject GameObjectReference;
 
-	public override void StartTween()
-	{
-		Destroy(GameObjectReference);
-	}
+}
 
-	public override void StopTween()
-	{
+public class GameObjectDestroyTweener
+{
+	//public GameObject GameObjectReference;
 
-	}
+	//public override void StartTween()
+	//{
+	//	Destroy(GameObjectReference);
+	//}
+
+	//public override void StopTween()
+	//{
+
+	//}
 }

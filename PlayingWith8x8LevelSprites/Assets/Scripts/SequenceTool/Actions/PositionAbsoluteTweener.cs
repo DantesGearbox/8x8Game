@@ -2,54 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionAbsoluteTweener : SequenceAction
+namespace SequenceTool
 {
-	public Transform transformReference;
 
-	public Vector3 startingValue;
-	public Vector3 endValue;
+}
 
-	private bool isTweening = false;
+public class PositionAbsoluteTweener
+{
+	//public Transform transformReference;
 
-	private void Update()
-	{
-		if (isTweening)
-		{
-			UpdatePosition();
-			UpdateTimer();
-		}
-	}
+	//public Vector3 startingValue;
+	//public Vector3 endValue;
 
-	private void UpdatePosition()
-	{
-		float normalizedTimer = NormalizeTo01Scale(0, tweenDuration, tweenTimer);
-		transformReference.localPosition = Vector3.Lerp(startingValue, endValue, normalizedTimer);
-	}
+	//private bool isTweening = false;
 
-	private void UpdateTimer()
-	{
-		tweenTimer += Time.deltaTime;
+	//private void Update()
+	//{
+	//	if (isTweening)
+	//	{
+	//		UpdatePosition();
+	//		UpdateTimer();
+	//	}
+	//}
 
-		if (tweenTimer > tweenDuration)
-		{
-			StopTween();
-			SetStartValueToEndValue(); //Make sure the current value gets to the max, even with slight lerp errors
-		}
-	}
+	//private void UpdatePosition()
+	//{
+	//	float normalizedTimer = NormalizeTo01Scale(0, tweenDuration, tweenTimer);
+	//	transformReference.localPosition = Vector3.Lerp(startingValue, endValue, normalizedTimer);
+	//}
 
-	private void SetStartValueToEndValue()
-	{
-		transformReference.localPosition = endValue;
-	}
+	//private void UpdateTimer()
+	//{
+	//	tweenTimer += Time.deltaTime;
 
-	public override void StartTween()
-	{
-		isTweening = true;
-	}
+	//	if (tweenTimer > tweenDuration)
+	//	{
+	//		StopTween();
+	//		SetStartValueToEndValue(); //Make sure the current value gets to the max, even with slight lerp errors
+	//	}
+	//}
 
-	public override void StopTween()
-	{
-		isTweening = false;
-		tweenTimer = 0;
-	}
+	//private void SetStartValueToEndValue()
+	//{
+	//	transformReference.localPosition = endValue;
+	//}
+
+	//public override void StartTween()
+	//{
+	//	isTweening = true;
+	//}
+
+	//public override void StopTween()
+	//{
+	//	isTweening = false;
+	//	tweenTimer = 0;
+	//}
 }

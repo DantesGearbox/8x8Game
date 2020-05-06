@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectDisableTweener : SequenceAction
+namespace SequenceTool
 {
-	public GameObject GameObjectReference;
 
-	public override void StartTween()
-	{
-		GameObjectReference.SetActive(false);
-	}
+}
 
-	public override void StopTween()
-	{
+public class GameObjectDisableTweener 
+{
+	//public GameObject GameObjectReference;
 
-	}
+	//public override void StartTween()
+	//{
+	//	GameObjectReference.SetActive(false);
+	//}
+
+	//public override void StopTween()
+	//{
+
+	//}
 }
