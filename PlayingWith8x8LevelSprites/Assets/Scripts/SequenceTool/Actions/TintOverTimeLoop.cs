@@ -2,7 +2,7 @@
 
 namespace SequenceTool
 {
-	public class ColorOverTimeLoop : OverTimeLoopAction
+	public class TintOverTimeLoop : OverTimeLoopAction
 	{
 		//Start value
 		//End value
@@ -15,9 +15,9 @@ namespace SequenceTool
 
 		public SpriteRenderer spriteRendererRef;
 
-		public Color startColor;
-		public Color endColor;
-		private Color onEnterSpriteColor;
+		public Color startTint;
+		public Color endTint;
+		private Color onEnterSpriteTint;
 
 		private void Update()
 		{
@@ -32,7 +32,7 @@ namespace SequenceTool
 		private void UpdateColor()
 		{
 			float normalizedTimer = Utility.NormalizeTo01Scale(0, loopDuration, loopTimer);
-			spriteRendererRef.color = Color.Lerp(startColor, endColor, normalizedTimer);
+			spriteRendererRef.color = Color.Lerp(startTint, endTint, normalizedTimer);
 		}
 
 		public override void StartAction()
@@ -41,7 +41,7 @@ namespace SequenceTool
 
 			if (restoreAfterExecution)
 			{
-				onEnterSpriteColor = spriteRendererRef.color;
+				onEnterSpriteTint = spriteRendererRef.color;
 			}
 		}
 
@@ -55,18 +55,18 @@ namespace SequenceTool
 			}
 			else
 			{
-				spriteRendererRef.color = endColor;
+				spriteRendererRef.color = endTint;
 			}
 		}
 
 		protected override void EndLoop()
 		{
-			spriteRendererRef.color = endColor;
+			spriteRendererRef.color = endTint;
 		}
 
 		protected override void RestoreStartValueAfterExecution()
 		{
-			spriteRendererRef.color = onEnterSpriteColor;
+			spriteRendererRef.color = onEnterSpriteTint;
 		}
 	}
 

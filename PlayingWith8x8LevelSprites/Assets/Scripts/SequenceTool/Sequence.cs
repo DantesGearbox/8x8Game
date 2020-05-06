@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ namespace SequenceTool
 {
 	public class Sequence : MonoBehaviour
 	{
+		public bool finishBeforeNextExecution = true;
+
 		public Action[] actions;
 
 		private float timer = 0;
-		private bool timerIsRunning = false;
+		private bool sequenceIsExecuting = false;
 
 		private void Start()
 		{
@@ -18,49 +21,96 @@ namespace SequenceTool
 
 		private void Update()
 		{
-			if (timerIsRunning)
-			{
-				timer += Time.deltaTime;
-			}
-
+			//Start relevant actions
 			foreach (Action action in actions)
 			{
-				if (timer > action.startingTime && !action.hasExecuted)
+				if (timer > action.startingTime && !action.isExecuting && !action.hasExecuted)
 				{
-					action.hasExecuted = true;
 					action.StartAction();
 				}
 			}
+
+			//Stop sequence if all actions are done
+			if (AreAllActionsDone())
+			{
+				StopSequence();
+			}
+
+			//Update timer
+			if (sequenceIsExecuting)
+			{
+				timer += Time.deltaTime;
+			}
 		}
 
-		public bool IsTimerRunning()
+		public bool AreAllActionsDone()
 		{
-			return timerIsRunning;
+			bool areAllActionsDone = true;
+			foreach (Action action in actions)
+			{
+				if (!action.hasExecuted)
+				{
+					areAllActionsDone = false;
+				}
+			}
+			return areAllActionsDone;
 		}
 
-		public void StartTimer()
+		public bool IsSequenceExecuting()
 		{
-			timerIsRunning = true;
+			return sequenceIsExecuting;
 		}
 
-		public void StopTimer()
+		public void StartSequence()
 		{
-			timerIsRunning = false;
+			if(finishBeforeNextExecution && sequenceIsExecuting) { return; }
+
+			StopAllActions();
+			ResetAllActions();
+			sequenceIsExecuting = true;
 			timer = 0;
-			ResetActions();
-
 		}
 
-		public void PauseTimer()
+		public void StopSequence()
 		{
-			timerIsRunning = false;
+			sequenceIsExecuting = false;
+			timer = 0;
+			StopAllActions();
 		}
 
-		private void ResetActions()
+		public void StopSequenceImmediately()
+		{
+			sequenceIsExecuting = false;
+			timer = 0;
+			StopAllActionsImmediately(); //WARNING: This might make the EndAction function of all actions play twice over a sequence.
+		}
+
+		public void PauseSequence()
+		{
+			sequenceIsExecuting = false;
+		}
+
+		private void StopAllActions()
+		{
+			foreach (Action action in actions)
+			{
+				action.isExecuting = false;
+			}
+		}
+
+		private void ResetAllActions()
 		{
 			foreach (Action action in actions)
 			{
 				action.hasExecuted = false;
+			}
+		}
+
+		private void StopAllActionsImmediately()
+		{
+			foreach (Action action in actions)
+			{
+				action.EndAction();
 			}
 		}
 	}

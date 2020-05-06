@@ -20,8 +20,7 @@ public class Bullet : MonoBehaviour
 	{
 		if(collision.tag == "Enemy" || collision.tag == "Terrain")
 		{
-			explode.StopTimer();
-			explode.StartTimer();
+			explode.StartSequence();
 		}
 	}
 }

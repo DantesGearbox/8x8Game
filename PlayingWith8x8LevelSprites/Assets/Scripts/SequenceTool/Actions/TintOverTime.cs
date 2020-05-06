@@ -2,7 +2,7 @@
 
 namespace SequenceTool
 {
-	public class ColorOverTime : OverTimeAction
+	public class TintOverTime : OverTimeAction
 	{
 		//Start value
 		//End value
@@ -11,8 +11,8 @@ namespace SequenceTool
 		//Loop + Pingpong (But probably in seperate classes for now)
 
 		public SpriteRenderer spriteRendererRef;
-		public Color startColor;
-		public Color endColor;
+		public Color startTint;
+		public Color endTint;
 
 		private Color onEnterSpriteColor;
 		
@@ -27,7 +27,7 @@ namespace SequenceTool
 		private void UpdateColor()
 		{
 			float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
-			spriteRendererRef.color = Color.Lerp(startColor, endColor, normalizedTimer);
+			spriteRendererRef.color = Color.Lerp(startTint, endTint, normalizedTimer);
 		}
 
 		public override void StartAction()
@@ -50,7 +50,7 @@ namespace SequenceTool
 			}
 			else
 			{
-				spriteRendererRef.color = endColor;
+				spriteRendererRef.color = endTint;
 			}
 		}
 

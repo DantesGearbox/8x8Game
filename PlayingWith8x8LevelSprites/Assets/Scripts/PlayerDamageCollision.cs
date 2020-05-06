@@ -12,8 +12,7 @@ public class PlayerDamageCollision : MonoBehaviour
 	{
 		if(collision.tag == "Enemy")
 		{
-			getHurt.StopTimer();
-			getHurt.StartTimer();
+			getHurt.StartSequence();
 
 		}
 	}

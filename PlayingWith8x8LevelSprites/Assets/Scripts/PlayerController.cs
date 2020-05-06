@@ -49,14 +49,12 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.LeftShift) && !dodgerollDisable.boolValue)
 		{
-			dodgeRoll.StopTimer(); //To reset it
-			dodgeRoll.StartTimer(); //To start it up
+			dodgeRoll.StartSequence();
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			//shoot.StopTimer(); //To reset it
-			//shoot.StartTimer(); //To start it up
+			//shoot.StartTimer();
 		}
 	}
 }

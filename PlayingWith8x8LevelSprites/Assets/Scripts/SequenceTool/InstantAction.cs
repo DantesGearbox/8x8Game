@@ -22,6 +22,7 @@ namespace SequenceTool
 		public override void EndAction()
 		{
 			isExecuting = false;
+			hasExecuted = true;
 		}
 	}
 }

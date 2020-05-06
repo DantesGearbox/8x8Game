@@ -14,9 +14,8 @@ public class Sloucher : MonoBehaviour
 		{
 			Rigidbody2D rb = collision.gameObject.GetComponentInParent<Rigidbody2D>();
 			bulletDirection.vectorValue = rb.velocity;
-
-			getHurt.StopTimer();
-			getHurt.StartTimer();
+			
+			getHurt.StartSequence();
 		}
 	}
 }

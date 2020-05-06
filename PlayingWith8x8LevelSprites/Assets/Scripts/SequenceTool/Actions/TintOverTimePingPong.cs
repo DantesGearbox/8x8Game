@@ -2,7 +2,7 @@
 
 namespace SequenceTool
 {
-	public class ColorOverTimePingPong : OverTimePingPongAction
+	public class TintOverTimePingPong : OverTimePingPongAction
 	{
 		//Start value
 		//End value
@@ -13,12 +13,12 @@ namespace SequenceTool
 		//Loop + Pingpong (But probably in seperate classes for now)
 
 		public SpriteRenderer spriteRendererRef;
-		public Color startColor;
-		public Color endColor;
+		public Color startTint;
+		public Color endTint;
 
-		private Color onEnterStartColor;
-		private Color onEnterEndColor;
-		private Color onEnterSpriteColor;
+		private Color onEnterStartTint;
+		private Color onEnterEndTint;
+		private Color onEnterSpriteTint;
 
 		private void Update()
 		{
@@ -33,7 +33,7 @@ namespace SequenceTool
 		private void UpdateColor()
 		{
 			float normalizedTimer = Utility.NormalizeTo01Scale(0, pingPongDuration, pingPongTimer);
-			spriteRendererRef.color = Color.Lerp(startColor, endColor, normalizedTimer);
+			spriteRendererRef.color = Color.Lerp(startTint, endTint, normalizedTimer);
 		}
 
 		public override void StartAction()
@@ -42,9 +42,9 @@ namespace SequenceTool
 
 			if (restoreAfterExecution)
 			{
-				onEnterStartColor = startColor;
-				onEnterEndColor = endColor;
-				onEnterSpriteColor = spriteRendererRef.color;
+				onEnterStartTint = startTint;
+				onEnterEndTint = endTint;
+				onEnterSpriteTint = spriteRendererRef.color;
 			}
 		}
 
@@ -58,7 +58,7 @@ namespace SequenceTool
 			}
 			else
 			{
-				spriteRendererRef.color = endColor;
+				spriteRendererRef.color = endTint;
 			}
 		}
 
@@ -70,16 +70,16 @@ namespace SequenceTool
 
 		private void SwapStartAndEndColors()
 		{
-			Color tempColor = startColor;
-			startColor = endColor;
-			endColor = tempColor;
+			Color tempColor = startTint;
+			startTint = endTint;
+			endTint = tempColor;
 		}
 
 		protected override void RestoreStartValueAfterExecution()
 		{
-			startColor = onEnterStartColor;
-			endColor = onEnterEndColor;
-			spriteRendererRef.color = onEnterSpriteColor;
+			startTint = onEnterStartTint;
+			endTint = onEnterEndTint;
+			spriteRendererRef.color = onEnterSpriteTint;
 		}
 	}
 }

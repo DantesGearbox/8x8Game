@@ -34,12 +34,13 @@ namespace SequenceTool
 		public override void StartAction()
 		{
 			isExecuting = true;
+			actionTimer = 0;
 		}
 
 		public override void EndAction()
 		{
 			isExecuting = false;
-			actionTimer = 0;
+			hasExecuted = true;
 		}
 	}
 }
