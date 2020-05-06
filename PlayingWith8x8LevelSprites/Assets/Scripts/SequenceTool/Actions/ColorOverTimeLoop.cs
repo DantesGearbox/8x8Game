@@ -4,80 +4,69 @@ namespace SequenceTool
 {
 	public class ColorOverTimeLoop : OverTimeLoopAction
 	{
-		public SpriteRenderer spriteRendererToTween;
+		//Start value
+		//End value
+		//OnEnterStart value
+		//OnEnterEnd value
+		//Tween type
+		//Return to start value after execution function
+		//Loop + Pingpong (But probably in seperate classes for now)
+
+
+		public SpriteRenderer spriteRendererRef;
 
 		public Color startColor;
 		public Color endColor;
-		private Color colorOnEnter;
-
-		public float loopDuration = 0;
-		private float loopTimer = 0;
-
-		private bool isTweening = false;
+		private Color onEnterSpriteColor;
 
 		private void Update()
 		{
-			if (!isTweening) { return; }
+			if (!isExecuting) { return; }
 
-			UpdateColorOverTime();
-			UpdateTimer();
+			UpdateColor();
+
 			UpdateLoopTimer();
+			UpdateTimer();
 		}
 
-		protected void UpdateTimer()
+		private void UpdateColor()
 		{
-			tweenTimer += Time.deltaTime;
+			float normalizedTimer = Utility.NormalizeTo01Scale(0, loopDuration, loopTimer);
+			spriteRendererRef.color = Color.Lerp(startColor, endColor, normalizedTimer);
+		}
 
-			if (tweenTimer > tweenDuration)
+		public override void StartAction()
+		{
+			base.StartAction();
+
+			if (restoreAfterExecution)
 			{
-				StopTween();
-				ResetColor();
+				onEnterSpriteColor = spriteRendererRef.color;
 			}
 		}
 
-		private void UpdateLoopTimer()
+		public override void EndAction()
 		{
-			loopTimer += Time.deltaTime;
+			base.EndAction();
 
-			if (loopTimer > loopDuration)
+			if (restoreAfterExecution)
 			{
-				loopTimer = 0;
+				RestoreStartValueAfterExecution();
 			}
-		}
-
-		private void UpdateColorOverTime()
-		{
-			float normalizedTimer = NormalizeTo01Scale(0, loopDuration, loopTimer);
-			spriteRendererToTween.color = Color.Lerp(startColor, endColor, normalizedTimer);
-		}
-
-		private void ResetColor()
-		{
-			spriteRendererToTween.color = colorOnEnter;
-		}
-
-		public override void StartTween()
-		{
-			isTweening = true;
-			colorOnEnter = spriteRendererToTween.color;
-		}
-
-		public override void StopTween()
-		{
-			isTweening = false;
-			tweenTimer = 0;
-			loopTimer = 0;
-			spriteRendererToTween.color = colorOnEnter;
+			else
+			{
+				spriteRendererRef.color = endColor;
+			}
 		}
 
 		protected override void EndLoop()
 		{
-			throw new System.NotImplementedException();
+			spriteRendererRef.color = endColor;
 		}
 
 		protected override void RestoreStartValueAfterExecution()
 		{
-			throw new System.NotImplementedException();
+			spriteRendererRef.color = onEnterSpriteColor;
 		}
 	}
 

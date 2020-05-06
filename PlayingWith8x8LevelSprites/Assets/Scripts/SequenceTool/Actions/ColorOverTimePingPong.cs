@@ -64,7 +64,7 @@ namespace SequenceTool
 
 		protected override void EndPingPong()
 		{
-			spriteRendererRef.color = endColor;
+			//spriteRendererRef.color = endColor; //It may look weird without this, but it may also look weird with this
 			SwapStartAndEndColors();
 		}
 
