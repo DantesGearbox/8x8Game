@@ -6,14 +6,14 @@ namespace SequenceTool
 {
 	public class Sequence : MonoBehaviour
 	{
-		public Action[] tweens;
+		public Action[] actions;
 
 		private float timer = 0;
 		private bool timerIsRunning = false;
 
 		private void Start()
 		{
-			tweens = GetComponentsInChildren<Action>();
+			actions = GetComponentsInChildren<Action>();
 		}
 
 		private void Update()
@@ -23,12 +23,12 @@ namespace SequenceTool
 				timer += Time.deltaTime;
 			}
 
-			foreach (Action tween in tweens)
+			foreach (Action action in actions)
 			{
-				if (timer > tween.startingTime && !tween.hasExecuted)
+				if (timer > action.startingTime && !action.hasExecuted)
 				{
-					tween.hasExecuted = true;
-					tween.StartAction();
+					action.hasExecuted = true;
+					action.StartAction();
 				}
 			}
 		}
@@ -47,7 +47,7 @@ namespace SequenceTool
 		{
 			timerIsRunning = false;
 			timer = 0;
-			ResetTweens();
+			ResetActions();
 
 		}
 
@@ -56,11 +56,11 @@ namespace SequenceTool
 			timerIsRunning = false;
 		}
 
-		private void ResetTweens()
+		private void ResetActions()
 		{
-			foreach (Action tween in tweens)
+			foreach (Action action in actions)
 			{
-				tween.hasExecuted = false;
+				action.hasExecuted = false;
 			}
 		}
 	}
