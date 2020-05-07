@@ -13,14 +13,16 @@ namespace SequenceTool
 		//UpdateTimer function
 		//Loop (But probably in seperate classes for now)
 
-		public bool restoreAfterExecution = false;
 		public float actionDuration = 0;
 		protected float actionTimer = 0;
 
+		[Tooltip("After execution, return to the state when the action started, instead of EndValue.")]
+		public bool restoreOriginalValue = false;
+
 		/// <summary>
-		/// Function is called if users check "restoreAfterExecution", implement accordingly
+		/// Function is called if users check "useRestoreValue", use at the end of action to restore the OnEnterValue
 		/// </summary>
-		protected abstract void RestoreStartValueAfterExecution();
+		protected abstract void RestoreOriginalValue();
 
 
 		// --- Functions that might be overriden by subclasses ---

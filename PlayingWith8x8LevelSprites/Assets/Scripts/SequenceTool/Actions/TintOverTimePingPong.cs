@@ -40,21 +40,20 @@ namespace SequenceTool
 		{
 			base.StartAction();
 
-			if (restoreAfterExecution)
-			{
-				onEnterStartTint = startTint;
-				onEnterEndTint = endTint;
-				onEnterSpriteTint = spriteRendererRef.color;
-			}
+			SaveOnEnterValues();
+
+			onEnterSpriteTint = spriteRendererRef.color;
 		}
 
 		public override void EndAction()
 		{
 			base.EndAction();
 
-			if (restoreAfterExecution)
+			RestoreOnEnterValues();
+
+			if (restoreOriginalValue)
 			{
-				RestoreStartValueAfterExecution();
+				RestoreOriginalValue();
 			}
 			else
 			{
@@ -64,7 +63,6 @@ namespace SequenceTool
 
 		protected override void EndPingPong()
 		{
-			//spriteRendererRef.color = endColor; //It may look weird without this, but it may also look weird with this
 			SwapStartAndEndColors();
 		}
 
@@ -75,11 +73,21 @@ namespace SequenceTool
 			endTint = tempColor;
 		}
 
-		protected override void RestoreStartValueAfterExecution()
+		protected override void RestoreOriginalValue()
+		{
+			spriteRendererRef.color = onEnterSpriteTint;
+		}
+
+		protected override void SaveOnEnterValues()
+		{
+			onEnterStartTint = startTint;
+			onEnterEndTint = endTint;
+		}
+
+		protected override void RestoreOnEnterValues()
 		{
 			startTint = onEnterStartTint;
 			endTint = onEnterEndTint;
-			spriteRendererRef.color = onEnterSpriteTint;
 		}
 	}
 }

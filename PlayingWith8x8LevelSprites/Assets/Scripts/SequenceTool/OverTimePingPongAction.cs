@@ -11,6 +11,16 @@ namespace SequenceTool
 
 		protected abstract void EndPingPong();
 
+		/// <summary>
+		/// Used to store the startValue and endValue for later restoration
+		/// </summary>
+		protected abstract void SaveOnEnterValues();
+
+		/// <summary>
+		/// Used to restore the startValue and endValue after they have been swapped around by the PingPong
+		/// </summary>
+		protected abstract void RestoreOnEnterValues();
+
 		protected void UpdatePingPongTimer()
 		{
 			pingPongTimer += Time.deltaTime;

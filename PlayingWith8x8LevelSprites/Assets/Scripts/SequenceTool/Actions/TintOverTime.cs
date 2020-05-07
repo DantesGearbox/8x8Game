@@ -14,7 +14,7 @@ namespace SequenceTool
 		public Color startTint;
 		public Color endTint;
 
-		private Color onEnterSpriteColor;
+		private Color onEnterSpriteTint;
 		
 		private void Update()
 		{
@@ -34,9 +34,9 @@ namespace SequenceTool
 		{
 			base.StartAction();
 
-			if (restoreAfterExecution)
+			if (restoreOriginalValue)
 			{
-				onEnterSpriteColor = spriteRendererRef.color;
+				onEnterSpriteTint = spriteRendererRef.color;
 			}
 		}
 
@@ -44,9 +44,9 @@ namespace SequenceTool
 		{
 			base.EndAction();
 
-			if (restoreAfterExecution)
+			if (restoreOriginalValue)
 			{
-				RestoreStartValueAfterExecution();
+				RestoreOriginalValue();
 			}
 			else
 			{
@@ -54,9 +54,9 @@ namespace SequenceTool
 			}
 		}
 
-		protected override void RestoreStartValueAfterExecution()
+		protected override void RestoreOriginalValue()
 		{
-			spriteRendererRef.color = onEnterSpriteColor;
+			spriteRendererRef.color = onEnterSpriteTint;
 		}
 	}
 }

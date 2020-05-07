@@ -8,10 +8,6 @@ namespace SequenceTool
 	{
 		//SetToValue
 
-		public bool restoreStartValueAfterExecution = false;
-		protected abstract void RestoreStartValueAfterExecution();
-
-
 		// --- Functions that might be overriden by subclasses ---
 		
 		public override void StartAction()

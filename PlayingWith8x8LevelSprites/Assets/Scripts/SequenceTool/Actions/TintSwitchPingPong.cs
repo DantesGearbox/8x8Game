@@ -6,26 +6,76 @@ namespace SequenceTool
 {
 	public class TintSwitchPingPong : SwitchPingPongAction
 	{
+		public SpriteRenderer spriteRendererRef;
+		public Color startTint;
+		public Color endTint;
+		
+		private Color onEnterStartTint;
+		private Color onEnterEndTint;
+		private Color onEnterSpriteTint;
+
+		private void Update()
+		{
+			if (!isExecuting) { return; }
+
+			UpdatePingPongTimer();
+			UpdateTimer();
+		}
+
+		public override void StartAction()
+		{
+			base.StartAction();
+
+			SaveOnEnterValues();
+
+			spriteRendererRef.color = startTint;
+		}
+
+		public override void EndAction()
+		{
+			base.EndAction();
+
+			RestoreOnEnterValues();
+
+			if (restoreOriginalValue)
+			{
+				RestoreOriginalValue();
+			}
+			else
+			{
+				spriteRendererRef.color = endTint;
+			}
+		}
+
+		protected override void RestoreOriginalValue()
+		{
+			spriteRendererRef.color = onEnterSpriteTint;
+		}
+
 		protected override void EndPingPong()
 		{
-			throw new System.NotImplementedException();
+			spriteRendererRef.color = endTint;
+			SwapStartAndEndColors();
 		}
 
-		protected override void RestoreStartValueAfterExecution()
+		private void SwapStartAndEndColors()
 		{
-			throw new System.NotImplementedException();
+			Color tempColor = startTint;
+			startTint = endTint;
+			endTint = tempColor;
 		}
 
-		// Start is called before the first frame update
-		void Start()
+		protected override void RestoreOnEnterValues()
 		{
-
+			startTint = onEnterStartTint;
+			endTint = onEnterEndTint;
 		}
 
-		// Update is called once per frame
-		void Update()
+		protected override void SaveOnEnterValues()
 		{
-
+			onEnterSpriteTint = spriteRendererRef.color;
+			onEnterStartTint = startTint;
+			onEnterEndTint = endTint;
 		}
 	}
 }

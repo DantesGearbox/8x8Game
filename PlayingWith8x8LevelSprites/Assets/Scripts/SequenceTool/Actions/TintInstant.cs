@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TintInstant : MonoBehaviour
+namespace SequenceTool
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public class TintInstant : InstantAction
+	{
+		public SpriteRenderer spriteRendererRef;
+		public Color setToTint;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		public override void StartAction()
+		{
+			base.StartAction();
+
+			spriteRendererRef.color = setToTint;
+		}
+	}
 }

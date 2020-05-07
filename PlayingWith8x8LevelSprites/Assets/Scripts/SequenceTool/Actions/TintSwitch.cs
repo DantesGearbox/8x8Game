@@ -6,21 +6,48 @@ namespace SequenceTool
 {
 	public class TintSwitch : SwitchAction
 	{
-		protected override void RestoreStartValueAfterExecution()
+		public SpriteRenderer spriteRendererRef;
+		public Color startTint;
+		public Color endTint;
+
+		private Color onEnterSpriteTint;
+
+		private void Update()
 		{
-			throw new System.NotImplementedException();
+			if (!isExecuting) { return; }
+
+			UpdateTimer();
 		}
 
-		// Start is called before the first frame update
-		void Start()
+		public override void StartAction()
 		{
-        
+			base.StartAction();
+
+			if (restoreOriginalValue)
+			{
+				onEnterSpriteTint = spriteRendererRef.color;
+			}
+
+			spriteRendererRef.color = startTint;
 		}
 
-		// Update is called once per frame
-		void Update()
+		public override void EndAction()
 		{
-        
+			base.EndAction();
+
+			if (restoreOriginalValue)
+			{
+				RestoreOriginalValue();
+			}
+			else
+			{
+				spriteRendererRef.color = endTint;
+			}
+		}
+
+		protected override void RestoreOriginalValue()
+		{
+			spriteRendererRef.color = onEnterSpriteTint;
 		}
 	}
 }
