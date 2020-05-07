@@ -6,13 +6,15 @@ namespace SequenceTool
 {
 	public abstract class InstantAction : Action
 	{
-		//SetToValue
+		// Sets the current value to setToValue
+		protected abstract void SetToValue();
 
 		// --- Functions that might be overriden by subclasses ---
-		
+
 		public override void StartAction()
 		{
 			isExecuting = true;
+			SetToValue();
 		}
 
 		public override void EndAction()

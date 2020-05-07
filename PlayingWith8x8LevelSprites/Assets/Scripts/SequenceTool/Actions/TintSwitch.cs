@@ -12,42 +12,24 @@ namespace SequenceTool
 
 		private Color onEnterSpriteTint;
 
-		private void Update()
+		protected override void StoreOriginalValue()
 		{
-			if (!isExecuting) { return; }
-
-			UpdateTimer();
-		}
-
-		public override void StartAction()
-		{
-			base.StartAction();
-
-			if (restoreOriginalValue)
-			{
-				onEnterSpriteTint = spriteRendererRef.color;
-			}
-
-			spriteRendererRef.color = startTint;
-		}
-
-		public override void EndAction()
-		{
-			base.EndAction();
-
-			if (restoreOriginalValue)
-			{
-				RestoreOriginalValue();
-			}
-			else
-			{
-				spriteRendererRef.color = endTint;
-			}
+			onEnterSpriteTint = spriteRendererRef.color;
 		}
 
 		protected override void RestoreOriginalValue()
 		{
 			spriteRendererRef.color = onEnterSpriteTint;
+		}
+
+		protected override void SetToEndValue()
+		{
+			spriteRendererRef.color = endTint;
+		}
+
+		protected override void SetToStartValue()
+		{
+			spriteRendererRef.color = startTint;
 		}
 	}
 }

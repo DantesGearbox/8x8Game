@@ -9,10 +9,8 @@ namespace SequenceTool
 		public SpriteRenderer spriteRendererRef;
 		public Color setToTint;
 
-		public override void StartAction()
+		protected override void SetToValue()
 		{
-			base.StartAction();
-
 			spriteRendererRef.color = setToTint;
 		}
 	}

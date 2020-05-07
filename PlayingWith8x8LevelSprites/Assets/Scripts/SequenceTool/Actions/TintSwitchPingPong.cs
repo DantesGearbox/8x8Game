@@ -14,55 +14,17 @@ namespace SequenceTool
 		private Color onEnterEndTint;
 		private Color onEnterSpriteTint;
 
-		private void Update()
-		{
-			if (!isExecuting) { return; }
-
-			UpdatePingPongTimer();
-			UpdateTimer();
-		}
-
-		public override void StartAction()
-		{
-			base.StartAction();
-
-			SaveOnEnterValues();
-
-			spriteRendererRef.color = startTint;
-		}
-
-		public override void EndAction()
-		{
-			base.EndAction();
-
-			RestoreOnEnterValues();
-
-			if (restoreOriginalValue)
-			{
-				RestoreOriginalValue();
-			}
-			else
-			{
-				spriteRendererRef.color = endTint;
-			}
-		}
-
-		protected override void RestoreOriginalValue()
-		{
-			spriteRendererRef.color = onEnterSpriteTint;
-		}
-
-		protected override void EndPingPong()
-		{
-			spriteRendererRef.color = endTint;
-			SwapStartAndEndColors();
-		}
-
-		private void SwapStartAndEndColors()
+		protected override void SwapStartAndEndValues()
 		{
 			Color tempColor = startTint;
 			startTint = endTint;
 			endTint = tempColor;
+		}
+
+		protected override void SaveOnEnterValues()
+		{
+			onEnterStartTint = startTint;
+			onEnterEndTint = endTint;
 		}
 
 		protected override void RestoreOnEnterValues()
@@ -71,11 +33,24 @@ namespace SequenceTool
 			endTint = onEnterEndTint;
 		}
 
-		protected override void SaveOnEnterValues()
+		protected override void StoreOriginalValue()
 		{
 			onEnterSpriteTint = spriteRendererRef.color;
-			onEnterStartTint = startTint;
-			onEnterEndTint = endTint;
+		}
+
+		protected override void RestoreOriginalValue()
+		{
+			spriteRendererRef.color = onEnterSpriteTint;
+		}
+
+		protected override void SetToEndValue()
+		{
+			spriteRendererRef.color = endTint;
+		}
+
+		protected override void SetToStartValue()
+		{
+			spriteRendererRef.color = startTint;
 		}
 	}
 }

@@ -4,13 +4,6 @@ namespace SequenceTool
 {
 	public class TintOverTimePingPong : OverTimePingPongAction
 	{
-		//Start value
-		//End value
-		//OnEnterStart value
-		//OnEnterEnd value
-		//Tween type
-		//Return to start value after execution function
-		//Loop + Pingpong (But probably in seperate classes for now)
 
 		public SpriteRenderer spriteRendererRef;
 		public Color startTint;
@@ -20,53 +13,15 @@ namespace SequenceTool
 		private Color onEnterEndTint;
 		private Color onEnterSpriteTint;
 
-		private void Update()
-		{
-			if (!isExecuting) { return; }
-
-			UpdateColor();
-
-			UpdatePingPongTimer();
-			UpdateTimer();
-		}
-
-		private void UpdateColor()
+		// ---The one actually-important function---
+		protected override void UpdateValue()
 		{
 			float normalizedTimer = Utility.NormalizeTo01Scale(0, pingPongDuration, pingPongTimer);
 			spriteRendererRef.color = Color.Lerp(startTint, endTint, normalizedTimer);
 		}
 
-		public override void StartAction()
-		{
-			base.StartAction();
-
-			SaveOnEnterValues();
-
-			onEnterSpriteTint = spriteRendererRef.color;
-		}
-
-		public override void EndAction()
-		{
-			base.EndAction();
-
-			RestoreOnEnterValues();
-
-			if (restoreOriginalValue)
-			{
-				RestoreOriginalValue();
-			}
-			else
-			{
-				spriteRendererRef.color = endTint;
-			}
-		}
-
-		protected override void EndPingPong()
-		{
-			SwapStartAndEndColors();
-		}
-
-		private void SwapStartAndEndColors()
+		// ---The not-as-important-but-I-can't-abstract-them-away functions---
+		protected override void SwapStartAndEndValues()
 		{
 			Color tempColor = startTint;
 			startTint = endTint;
@@ -78,7 +33,7 @@ namespace SequenceTool
 			spriteRendererRef.color = onEnterSpriteTint;
 		}
 
-		protected override void SaveOnEnterValues()
+		protected override void StoreOnEnterValues()
 		{
 			onEnterStartTint = startTint;
 			onEnterEndTint = endTint;
@@ -88,6 +43,16 @@ namespace SequenceTool
 		{
 			startTint = onEnterStartTint;
 			endTint = onEnterEndTint;
+		}
+
+		protected override void StoreOriginalValue()
+		{
+			onEnterSpriteTint = spriteRendererRef.color;
+		}
+
+		protected override void SetToEndValue()
+		{
+			spriteRendererRef.color = endTint;
 		}
 	}
 }

@@ -4,59 +4,32 @@ namespace SequenceTool
 {
 	public class TintOverTime : OverTimeAction
 	{
-		//Start value
-		//End value
-		//Tween type
-		//Return to start value after execution function
-		//Loop + Pingpong (But probably in seperate classes for now)
-
 		public SpriteRenderer spriteRendererRef;
 		public Color startTint;
 		public Color endTint;
+		private Color originalTint;
 
-		private Color onEnterSpriteTint;
-		
-		private void Update()
-		{
-			if (!isExecuting) { return; }
-			
-			UpdateColor();
-			UpdateTimer();
-		}
-
-		private void UpdateColor()
+		protected override void UpdateValue()
 		{
 			float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
 			spriteRendererRef.color = Color.Lerp(startTint, endTint, normalizedTimer);
 		}
 
-		public override void StartAction()
-		{
-			base.StartAction();
 
-			if (restoreOriginalValue)
-			{
-				onEnterSpriteTint = spriteRendererRef.color;
-			}
-		}
-
-		public override void EndAction()
-		{
-			base.EndAction();
-
-			if (restoreOriginalValue)
-			{
-				RestoreOriginalValue();
-			}
-			else
-			{
-				spriteRendererRef.color = endTint;
-			}
-		}
-
+		// ---The not-as-important-but-I-can't-abstract-them-away functions---
 		protected override void RestoreOriginalValue()
 		{
-			spriteRendererRef.color = onEnterSpriteTint;
+			spriteRendererRef.color = originalTint;
+		}
+
+		protected override void StoreOriginalValue()
+		{
+			originalTint = spriteRendererRef.color;
+		}
+
+		protected override void SetToEndValue()
+		{
+			spriteRendererRef.color = endTint;
 		}
 	}
 }

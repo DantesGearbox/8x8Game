@@ -6,28 +6,33 @@ namespace SequenceTool
 {
 	public abstract class OverTimeAction : Action
 	{
-		//Start value
-		//End value
-		//Tween type
-		//Duration
-		//Timer
-		//UpdateTimer function
-		//Return to start value after execution variable
-		//Return to start value after execution function
-		//Loop + Pingpong (But probably in seperate classes for now)
-
 		[Tooltip("After execution, return to the state when the action started, instead of EndValue.")]
 		public bool restoreOriginalValue = false;
 		public float actionDuration = 0;
 		protected float actionTimer = 0;
 
-		/// <summary>
-		/// Function is called if users check "restoreOriginalValue", implement accordingly
-		/// </summary>
+		// Function is called if users check "restoreOriginalValue", implement accordingly
 		protected abstract void RestoreOriginalValue();
+		
+		// Used to store the onEnterValue for later restoration
+		protected abstract void StoreOriginalValue();
+
+		// Sets the current value to endValue
+		protected abstract void SetToEndValue();
+
+		// Update the current value over time
+		protected abstract void UpdateValue();
 
 
 		// --- Functions that might be overriden by subclasses ---
+
+		protected virtual void Update()
+		{
+			if (!isExecuting) { return; }
+
+			UpdateValue();
+			UpdateTimer();
+		}
 
 		protected void UpdateTimer()
 		{
@@ -43,12 +48,26 @@ namespace SequenceTool
 		{
 			isExecuting = true;
 			actionTimer = 0;
+
+			if (restoreOriginalValue)
+			{
+				StoreOriginalValue();
+			}
 		}
 
 		public override void EndAction()
 		{
 			isExecuting = false;
 			hasExecuted = true;
+
+			if (restoreOriginalValue)
+			{
+				RestoreOriginalValue();
+			}
+			else
+			{
+				SetToEndValue();
+			}
 		}
 	}
 }

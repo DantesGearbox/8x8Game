@@ -9,20 +9,37 @@ namespace SequenceTool
 		public float pingPongDuration = 0;
 		protected float pingPongTimer = 0;
 
-		/// <summary>
-		/// What happens at the end of one ping
-		/// </summary>
-		protected abstract void EndPingPong();
+		// Swap the start and end values so we can ping pong
+		protected abstract void SwapStartAndEndValues();
 
-		/// <summary>
-		/// Used to store the startValue and endValue for later restoration
-		/// </summary>
+		// Used to store the onEnterValue, startValue and endValue for later restoration
 		protected abstract void SaveOnEnterValues();
 
-		/// <summary>
-		/// Used to restore the startValue and endValue after they have been swapped around by the PingPong
-		/// </summary>
+		// Used to restore the startValue and endValue after they have been swapped around by the PingPong
 		protected abstract void RestoreOnEnterValues();
+
+		protected void EndPingPong()
+		{
+			SwapStartAndEndValues();
+		}
+
+		protected override void Update()
+		{
+			base.Update();
+			UpdatePingPongTimer();
+		}
+
+		public override void StartAction()
+		{
+			base.StartAction();
+			SaveOnEnterValues();
+		}
+
+		public override void EndAction()
+		{
+			base.EndAction();
+			RestoreOnEnterValues();
+		}
 
 		protected void UpdatePingPongTimer()
 		{

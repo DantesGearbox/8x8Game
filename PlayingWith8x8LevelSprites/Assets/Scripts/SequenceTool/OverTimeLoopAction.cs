@@ -9,7 +9,16 @@ namespace SequenceTool
 		public float loopDuration = 0;
 		protected float loopTimer = 0;
 
-		protected abstract void EndLoop();
+		protected override void Update()
+		{
+			base.Update();
+			UpdateLoopTimer();
+		}
+
+		protected void EndLoop()
+		{
+			SetToEndValue();
+		}
 
 		protected void UpdateLoopTimer()
 		{
