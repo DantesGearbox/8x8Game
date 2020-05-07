@@ -13,9 +13,14 @@ namespace SequenceTool
 		//UpdateTimer function
 		//Loop (But probably in seperate classes for now)
 
+		public bool restoreAfterExecution = false;
 		public float actionDuration = 0;
 		protected float actionTimer = 0;
-		protected abstract void SetToEndValue();
+
+		/// <summary>
+		/// Function is called if users check "restoreAfterExecution", implement accordingly
+		/// </summary>
+		protected abstract void RestoreStartValueAfterExecution();
 
 
 		// --- Functions that might be overriden by subclasses ---
@@ -27,7 +32,6 @@ namespace SequenceTool
 			if (actionTimer > actionDuration)
 			{
 				EndAction();
-				SetToEndValue();
 			}
 		}
 

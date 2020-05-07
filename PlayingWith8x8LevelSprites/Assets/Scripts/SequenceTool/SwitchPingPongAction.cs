@@ -4,11 +4,14 @@ using UnityEngine;
 
 namespace SequenceTool
 {
-	public abstract class SwitchPingPongAction : OverTimeAction
+	public abstract class SwitchPingPongAction : SwitchAction
 	{
 		public float pingPongDuration = 0;
 		protected float pingPongTimer = 0;
 
+		/// <summary>
+		/// What happens at the end of one ping
+		/// </summary>
 		protected abstract void EndPingPong();
 
 		protected void UpdatePingPongTimer()

@@ -19,6 +19,10 @@ namespace SequenceTool
 		public bool restoreAfterExecution = false;
 		public float actionDuration = 0;
 		protected float actionTimer = 0;
+
+		/// <summary>
+		/// Function is called if users check "restoreAfterExecution", implement accordingly
+		/// </summary>
 		protected abstract void RestoreStartValueAfterExecution();
 
 
