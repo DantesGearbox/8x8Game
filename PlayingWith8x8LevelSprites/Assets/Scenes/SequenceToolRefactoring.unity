@@ -167,7 +167,7 @@ MonoBehaviour:
   hasExecuted: 0
   isExecuting: 0
   startingTime: 0
-  restoreOriginalValue: 0
+  restoreOriginalValue: 1
   actionDuration: 1
   spriteRendererRef: {fileID: 692634547}
   startTint: {r: 1, g: 0, b: 0, a: 1}
@@ -1964,7 +1964,7 @@ MonoBehaviour:
   isExecuting: 0
   startingTime: 0
   actionDuration: 1
-  restoreOriginalValue: 0
+  restoreOriginalValue: 1
   spriteRendererRef: {fileID: 692634547}
   startTint: {r: 1, g: 0, b: 0, a: 1}
   endTint: {r: 0, g: 0, b: 0, a: 1}
@@ -2016,7 +2016,7 @@ MonoBehaviour:
   startingTime: 0
   restoreOriginalValue: 1
   actionDuration: 1
-  pingPongDuration: 0.1
+  pingPongDuration: 0.25
   spriteRendererRef: {fileID: 692634547}
   startTint: {r: 1, g: 0, b: 0, a: 1}
   endTint: {r: 0, g: 0, b: 0, a: 1}
@@ -14582,9 +14582,9 @@ MonoBehaviour:
   hasExecuted: 0
   isExecuting: 0
   startingTime: 0
-  restoreOriginalValue: 0
+  restoreOriginalValue: 1
   actionDuration: 1
-  loopDuration: 0.2
+  loopDuration: 0.3
   spriteRendererRef: {fileID: 692634547}
   startTint: {r: 1, g: 0, b: 0, a: 1}
   endTint: {r: 0, g: 0, b: 0, a: 1}

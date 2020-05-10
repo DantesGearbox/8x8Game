@@ -12,6 +12,8 @@ namespace SequenceTool
 		protected override void Update()
 		{
 			base.Update();
+
+			if (!isExecuting) { return; }
 			UpdateLoopTimer();
 		}
 

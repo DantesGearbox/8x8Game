@@ -26,6 +26,8 @@ namespace SequenceTool
 		protected override void Update()
 		{
 			base.Update();
+
+			if (!isExecuting) { return; }
 			UpdatePingPongTimer();
 		}
 
@@ -37,8 +39,8 @@ namespace SequenceTool
 
 		public override void EndAction()
 		{
-			base.EndAction();
 			RestoreOnEnterValues();
+			base.EndAction();
 		}
 
 		protected void UpdatePingPongTimer()

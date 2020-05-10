@@ -20,6 +20,7 @@ namespace SequenceTool
 			spriteRendererRef.color = Color.Lerp(startTint, endTint, normalizedTimer);
 		}
 
+
 		// ---The not-as-important-but-I-can't-abstract-them-away functions---
 		protected override void SwapStartAndEndValues()
 		{
