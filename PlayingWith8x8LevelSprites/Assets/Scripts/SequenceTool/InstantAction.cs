@@ -15,6 +15,7 @@ namespace SequenceTool
 		{
 			isExecuting = true;
 			SetToValue();
+			EndAction();
 		}
 
 		public override void EndAction()
