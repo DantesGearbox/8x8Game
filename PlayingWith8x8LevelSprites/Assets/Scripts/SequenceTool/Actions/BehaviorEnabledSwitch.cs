@@ -4,28 +4,33 @@ using UnityEngine;
 
 namespace SequenceTool
 {
-	public class BehaviorDisableSwitch : SwitchAction
+	public class BehaviorEnabledSwitch : SwitchAction
 	{
 		public Behaviour behaviourRef;
 
+		public bool startValue;
+		public bool endValue;
+
+		private bool onEnterValue;
+
 		protected override void RestoreOriginalValue()
 		{
-			throw new System.NotImplementedException();
+			behaviourRef.enabled = onEnterValue;
 		}
 
 		protected override void SetToEndValue()
 		{
-			throw new System.NotImplementedException();
+			behaviourRef.enabled = endValue;
 		}
 
 		protected override void SetToStartValue()
 		{
-			throw new System.NotImplementedException();
+			behaviourRef.enabled = startValue;
 		}
 
 		protected override void StoreOriginalValue()
 		{
-			throw new System.NotImplementedException();
+			onEnterValue = behaviourRef.enabled;
 		}
 	}
 }
