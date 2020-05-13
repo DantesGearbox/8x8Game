@@ -8,7 +8,7 @@ namespace SequenceTool
 	{
 		[Header("A header")]
 		public Rigidbody2D rigidbody2DReference;
-
+		
 		public Vector3Wrapper movementVectorInput;
 
 		public bool useInputAsDirection = false;
@@ -17,11 +17,15 @@ namespace SequenceTool
 		public Vector2 direction;
 		public float distance;
 
+		private Vector2 moveDirection;
+
+		private Vector2 onEnterValue;
+
 		public override void StartAction()
 		{
 			base.StartAction();
 
-			Vector2 moveDirection = direction.normalized;
+			moveDirection = direction.normalized;
 			if (useInputAsDirection)
 			{
 				moveDirection = movementVectorInput.vectorValue.normalized;
@@ -36,13 +40,6 @@ namespace SequenceTool
 			rigidbody2DReference.velocity = movementVector;
 		}
 
-		public override void EndAction()
-		{
-			base.EndAction();
-
-			rigidbody2DReference.velocity = Vector2.zero;
-		}
-
 		protected override void UpdateValue()
 		{
 
@@ -50,17 +47,17 @@ namespace SequenceTool
 
 		protected override void RestoreOriginalValue()
 		{
-
+			rigidbody2DReference.velocity = onEnterValue;
 		}
 
 		protected override void SetToEndValue()
 		{
-			
+			rigidbody2DReference.velocity = Vector2.zero;
 		}
 
 		protected override void StoreOriginalValue()
 		{
-			
+			onEnterValue = rigidbody2DReference.velocity;
 		}
 	}
 }
