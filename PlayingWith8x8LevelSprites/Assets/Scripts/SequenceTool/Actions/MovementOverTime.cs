@@ -9,35 +9,31 @@ namespace SequenceTool
 		[Header("A header")]
 		public Rigidbody2D rigidbody2DReference;
 
-		//public Vector3Wrapper vector3Reference;
+		public Vector3Wrapper movementVectorInput;
 
-		//public bool useVectorRefAsDirection = false;
-		//public bool useReverseVector = false;
-
-		[Tooltip("The movement that will occur over the duration of the action")]
-		public Vector2 movement;
-
-		private Vector2 movementVector;
+		public bool useInputAsDirection = false;
+		public bool useReverseVector = false;
+		
+		public Vector2 direction;
+		public float distance;
 
 		public override void StartAction()
 		{
 			base.StartAction();
 
-			//Vector2 moveDirection = direction.normalized;
-			//if (useVectorRefAsDirection)
-			//{
-			//	moveDirection = vector3Reference.vectorValue.normalized;
-			//}
-			//if (useReverseVector)
-			//{
-			//	moveDirection = (vector3Reference.vectorValue * -1.0f).normalized;
-			//}
+			Vector2 moveDirection = direction.normalized;
+			if (useInputAsDirection)
+			{
+				moveDirection = movementVectorInput.vectorValue.normalized;
+			}
+			if (useReverseVector)
+			{
+				moveDirection = (movementVectorInput.vectorValue * -1.0f).normalized;
+			}
 
-			//movementVector = moveDirection * speed;
-			//rigidbody2DReference.velocity = movementVector;
-
-			Vector2 movementPerSecond = movement / actionDuration;
-			rigidbody2DReference.velocity = movementPerSecond;
+			float speed = distance / actionDuration;
+			Vector2 movementVector = moveDirection * speed;
+			rigidbody2DReference.velocity = movementVector;
 		}
 
 		public override void EndAction()
