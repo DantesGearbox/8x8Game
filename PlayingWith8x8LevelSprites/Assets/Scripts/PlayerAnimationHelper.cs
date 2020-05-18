@@ -15,7 +15,7 @@ public class PlayerAnimationHelper : MonoBehaviour
     {
 		anim = GetComponent<Animator>();
 		rb = GetComponent<Rigidbody2D>();
-		sr = GetComponentInChildren<SpriteRenderer>();
+		sr = GetComponent<SpriteRenderer>();
     }
 	
     void Update()

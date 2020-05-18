@@ -6,10 +6,11 @@ namespace SequenceTool
 {
 	public abstract class OverTimeAction : Action
 	{
-		[Tooltip("After execution, return to the state when the action started, instead of EndValue.")]
-		public bool restoreOriginalValue = false;
 		public float actionDuration = 0;
 		protected float actionTimer = 0;
+
+		[Tooltip("After execution, return to the state when the action started, instead of EndValue.")]
+		public bool restoreOriginalValue = false;
 
 		// Function is called if users check "restoreOriginalValue", implement accordingly
 		protected abstract void RestoreOriginalValue();
