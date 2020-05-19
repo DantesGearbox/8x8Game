@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SequenceTool;
 
-public class Sloucher : MonoBehaviour
+public class Monster : MonoBehaviour
 {
 	public Sequence getHurt;
 	public Vector3Wrapper bulletDirection;
