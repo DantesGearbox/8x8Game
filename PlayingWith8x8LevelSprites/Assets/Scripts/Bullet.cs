@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
 	public float movespeed = 10;
 	public Sequence explode;
+	public Vector3Wrapper flyingDirection;
 
 	private Rigidbody2D rb;
 
@@ -14,6 +15,7 @@ public class Bullet : MonoBehaviour
     {
 		rb = GetComponent<Rigidbody2D>();
 		rb.velocity = transform.up * movespeed; //Send the bullet along it's rotation
+		flyingDirection.vectorValue = rb.velocity;
     }
 
 	private void OnTriggerEnter2D(Collider2D collision)

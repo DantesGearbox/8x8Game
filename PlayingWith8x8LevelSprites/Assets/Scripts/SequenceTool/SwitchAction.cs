@@ -28,6 +28,7 @@ namespace SequenceTool
 		protected virtual void Update()
 		{
 			if (!isExecuting) { return; }
+			SetToStartValue();
 			UpdateTimer();
 		}
 

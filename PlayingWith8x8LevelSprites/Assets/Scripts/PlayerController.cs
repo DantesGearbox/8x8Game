@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	public FloatWrapper movespeed;
 	public BoolWrapper disableInput;
 	public BoolWrapper disableDodgroll;
+	public BoolWrapper disableShooting;
 	public Vector3Wrapper lastNonzeroVelocity;
 
 	[Header("Sequences")]
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
 			dodgeRoll.StartSequence();
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space) && !disableShooting.boolValue)
 		{
 			shoot.StartSequence();
 		}
