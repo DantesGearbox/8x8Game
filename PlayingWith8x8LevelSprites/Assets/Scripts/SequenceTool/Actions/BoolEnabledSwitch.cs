@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace SequenceTool
 {
-	public class AnimatorEnabledSwitch : SwitchAction
+	public class BoolEnabledSwitch : SwitchAction
 	{
-		public Animator animator;
+		[Header(" ")]
+		public BoolWrapper boolRef;
 
 		public bool startValue;
 		public bool endValue;
@@ -15,22 +16,22 @@ namespace SequenceTool
 
 		protected override void RestoreOriginalValue()
 		{
-			animator.enabled = onEnterValue;
+			boolRef.boolValue = onEnterValue;
 		}
 
 		protected override void SetToEndValue()
 		{
-			animator.enabled = endValue;
+			boolRef.boolValue = endValue;
 		}
 
 		protected override void SetToStartValue()
 		{
-			animator.enabled = startValue;
+			boolRef.boolValue = startValue;
 		}
 
 		protected override void StoreOriginalValue()
 		{
-			onEnterValue = animator.enabled;
+			onEnterValue = boolRef.boolValue;
 		}
 	}
 }

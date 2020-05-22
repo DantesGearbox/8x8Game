@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
 
 	[Header("Exposed Values")]
 	public FloatWrapper movespeed;
-	public BoolWrapper disableInput;
-	public BoolWrapper disableDodgroll;
-	public BoolWrapper disableShooting;
+	public BoolWrapper inputEnabled;
+	public BoolWrapper dodgerollEnabled;
+	public BoolWrapper shootingEnabled;
 	public Vector3Wrapper lastNonzeroVelocity;
 
 	[Header("Sequences")]
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		//Return if we are not taking input currently
-		if (disableInput.boolValue)
+		if (!inputEnabled)
 		{
 			return;
 		}
@@ -48,12 +48,12 @@ public class PlayerController : MonoBehaviour
 
 		rb.velocity = direction * movespeed.floatValue;
 
-		if (Input.GetKeyDown(KeyCode.LeftShift) && !disableDodgroll.boolValue)
+		if (Input.GetKeyDown(KeyCode.LeftShift) && dodgerollEnabled)
 		{
 			dodgeRoll.StartSequence();
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space) && !disableShooting.boolValue)
+		if (Input.GetKeyDown(KeyCode.Space) && shootingEnabled)
 		{
 			shoot.StartSequence();
 		}

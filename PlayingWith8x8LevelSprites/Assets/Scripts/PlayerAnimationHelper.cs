@@ -9,7 +9,7 @@ public class PlayerAnimationHelper : MonoBehaviour
 	Animator anim;
 	SpriteRenderer sr;
 
-	public BoolWrapper disable;
+	public BoolWrapper animHelperEnabled;
 	
     void Start()
     {
@@ -30,7 +30,7 @@ public class PlayerAnimationHelper : MonoBehaviour
 			anim.SetBool("IsRunning", false);
 		}
 
-		if (disable.boolValue)
+		if (!animHelperEnabled.boolValue)
 		{
 			return;
 		}
