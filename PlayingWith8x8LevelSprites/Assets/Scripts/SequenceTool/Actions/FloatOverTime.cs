@@ -30,6 +30,8 @@ namespace SequenceTool
 		{
 			float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
 			referencedFloat.floatValue = Mathf.Lerp(startValue, endValue, normalizedTimer);
+
+			referencedFloat.floatValue = TweenType.linear(startValue, endValue, normalizedTimer);
 		}
 	}
 }
