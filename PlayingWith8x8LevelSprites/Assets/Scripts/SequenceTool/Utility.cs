@@ -27,14 +27,14 @@ namespace SequenceTool
 		//}
 
 		//Not functional
-		public static Vector2 NormalizeTo01ScaleVector2(Vector2 startVal, Vector2 maxVal, Vector2 currVal)
-		{
-			Vector2 nonOffsetValue = currVal - startVal;
-			Vector2 nonOffsetMaxValue = maxVal - startVal;
+		//public static Vector2 NormalizeTo01ScaleVector2(Vector2 startVal, Vector2 maxVal, Vector2 currVal)
+		//{
+		//	Vector2 nonOffsetValue = currVal - startVal;
+		//	Vector2 nonOffsetMaxValue = maxVal - startVal;
 
-			Vector2 normalizedValue = nonOffsetValue / nonOffsetMaxValue;
+		//	Vector2 normalizedValue = nonOffsetValue / nonOffsetMaxValue;
 
-			return normalizedValue;
-		}
+		//	return normalizedValue;
+		//}
 	}
 }

@@ -43,27 +43,37 @@ namespace SequenceTool
 
 
 
-			float speed = distance / actionDuration;
-			Vector2 movementVector = moveDirection * speed;
-			rigidbody2DReference.velocity = movementVector;
+			//float speed = distance / actionDuration;
+			//Vector2 movementVector = moveDirection * speed;
+			//rigidbody2DReference.velocity = movementVector;
 		}
 
 		protected override void UpdateValue()
 		{
-			//float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
-			//referencedFloat.floatValue = Mathf.Lerp(startValue, endValue, normalizedTimer);
+			//float timeForwards = 1 / 60; //Look forwards one 1/60th of a second 
 
 			//float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
-			//spriteRendererRef.color = Color.Lerp(startTint, endTint, normalizedTimer);
+			//float normalizedTimerForward = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer + timeForwards);
 
-			float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
+			//Vector2 currentPosition = rigidbody2DReference.position;
+			//Vector2 nextPosition = Vector2.Lerp(startPosition, endPosition, normalizedTimerForward);
+
+			//Vector2 diff = nextPosition - currentPosition;
+			//diff *= 60;
+
+			//rigidbody2DReference.velocity = diff;
+
 
 			Vector2 currentPosition = rigidbody2DReference.position;
 
+			float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
+			Vector2 nextPosition = Vector2.Lerp(startPosition, endPosition, normalizedTimer);
 
+			Vector2 diff = nextPosition - currentPosition;
 
+			diff *= (1/Time.fixedDeltaTime);
 
-			//rigidbody2DReference.velocity = Vector2.Lerp(startPosition, endPosition, normalizedTimer);
+			rigidbody2DReference.velocity = diff;
 		}
 
 		protected override void RestoreOriginalValue()
