@@ -46,7 +46,7 @@ namespace SequenceTool
 			GameObject obj = Instantiate(prefab, transform.position + offset + globalOffset, Quaternion.Euler(addedOffsetRot));
 		}
 
-		private void OnDrawGizmos()
+		private void OnDrawGizmosSelected()
 		{
 			Vector3 offset = offsetDirectionReference.vectorValue.normalized * offsetLength;
 			Gizmos.DrawWireSphere(transform.position + offset + globalOffset, 0.25f);
