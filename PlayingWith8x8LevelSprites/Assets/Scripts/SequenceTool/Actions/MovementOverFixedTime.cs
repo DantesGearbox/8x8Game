@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SequenceTool
 {
@@ -39,9 +37,8 @@ namespace SequenceTool
 			}
 
 			startPosition = rigidbody2DReference.position;
-			endPosition = startPosition + moveDirection * distance; //This position can't quite be expected since collision with other objects might stop it
+			endPosition = startPosition + (moveDirection * distance); //This position can't quite be expected since collision with other objects might stop it
 		}
-
 
 		protected override void UpdateValue()
 		{
@@ -50,12 +47,10 @@ namespace SequenceTool
 			float normalizedTimer = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer);
 			float normalizedTimerForward = Utility.NormalizeTo01Scale(0, actionDuration, actionTimer + timeForwards);
 
-			Vector2 currentPosition = rigidbody2DReference.position;
+			Vector2 currentPosition = Vector2.Lerp(startPosition, endPosition, normalizedTimer);
 			Vector2 nextPosition = Vector2.Lerp(startPosition, endPosition, normalizedTimerForward);
 
 			Vector2 diff = nextPosition - currentPosition;
-			
-			Debug.Log("NormalizedTimer: " + normalizedTimer + ", NewVelocity: " + (diff * (1 / timeForwards)).ToString("F4") + ", CurrentPos: " + currentPosition.ToString("F4") + ", NextPos: " + nextPosition.ToString("F4") + ", Diff:" + diff.ToString("F4"));
 
 			rigidbody2DReference.velocity = diff * (1/timeForwards);
 		}

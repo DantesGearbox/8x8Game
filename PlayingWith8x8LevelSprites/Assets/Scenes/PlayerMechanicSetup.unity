@@ -12438,14 +12438,14 @@ MonoBehaviour:
   hasExecuted: 0
   isExecuting: 0
   startingTime: 0
-  actionDuration: 0.2
+  actionDuration: 0.3
   restoreOriginalValue: 0
   rigidbody2DReference: {fileID: 449398420}
   movementVectorInput: {fileID: 1736484175}
   useInputAsDirection: 1
   useReverseVector: 0
   direction: {x: 0, y: 0}
-  distance: 2
+  distance: 2.5
 --- !u!1 &1819930555
 GameObject:
   m_ObjectHideFlags: 0

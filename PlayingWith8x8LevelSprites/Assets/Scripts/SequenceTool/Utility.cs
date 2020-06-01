@@ -16,6 +16,11 @@ namespace SequenceTool
 			return normalizedValue;
 		}
 
+		public static float GetPercentOfVectorMagnitude(Vector2 vec, float f)
+		{
+			return vec.magnitude * f;
+		}
+
 		//public static float NormalizeTo01ScaleVector3(Vector3 startVal, Vector3 maxVal, Vector3 currVal)
 		//{
 		//	float nonOffsetValue = currVal - startVal;
